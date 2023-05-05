@@ -84,7 +84,7 @@ app.post('/tasks', (req, res) => {
     const newTask =
         {
           id: newID(),
-          titel: req.body.title,
+          titel: req.body.Titel,
           ersteller: 'Max Muster',
           email: 'Max@Mustermail',
           erstelldatum: nowJSON,
@@ -114,10 +114,7 @@ app.get('/tasks/:id', (req, res) => {
     const task = FINDING(taskId)
 
     if (task) {
-      res.json(task)
-      res.status(200).json({
-        message: 'Task found.'
-      })
+      res.status(200).json(task)
     } else {
       res.status(404).json({
         message: 'Task NOT found.'
@@ -142,7 +139,7 @@ app.put('/tasks/:id', (req, res) => {
     const id = req.params.id
     const NewTask = {
       id,
-      titel: req.body.title,
+      titel: req.body.Titel,
       ersteller: 'Max Muster',
       email: 'Max@Mustermail',
       erstelldatum: nowJSON,
@@ -151,9 +148,7 @@ app.put('/tasks/:id', (req, res) => {
 
     if (id) {
       changeTask(NewTask)
-      res.status(200).json({
-        message: 'Task NOT found.'
-      })
+      res.status(200).json(NewTask)
     } else {
       res.status(404).json({
         message: 'Task NOT found.'
