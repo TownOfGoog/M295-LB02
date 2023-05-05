@@ -1,4 +1,26 @@
+commit c1f68d12db4de4b41793ceb59b3f647d5eaf6162
+Author: TownOfGoog <95412264+TownOfGoog@users.noreply.github.com>
+Date:   Fri May 5 13:27:00 2023 +0000
 
+    Aufgaben 1-9 beendet
+
+commit 80d3fb7a4833bc58345d2dc57a66aee0f83f3ef0
+Author: TownOfGoog <95412264+TownOfGoog@users.noreply.github.com>
+Date:   Fri May 5 12:28:32 2023 +0000
+
+    AUfgaben 1-9 verfeinert
+
+commit 0a17dd99b2d17f4dd27a6d9ec2e7a1b425ce01fc
+Author: TownOfGoog <95412264+TownOfGoog@users.noreply.github.com>
+Date:   Fri May 5 11:39:14 2023 +0000
+
+    Login Aufgaben 6-8
+
+commit d74fc1945effd407167c85c8824a689c1f741bd0
+Author: TownOfGoog <95412264+TownOfGoog@users.noreply.github.com>
+Date:   Fri May 5 09:18:48 2023 +0000
+
+    Hauptanforderungen 1-5 Erledigt
 
 commit 48bd2436a09a6015c724c87b6d8f416457e7521c
 Author: TownOfGoog <95412264+TownOfGoog@users.noreply.github.com>
