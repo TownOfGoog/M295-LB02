@@ -66,7 +66,7 @@ app.get('/tasks', (req, res) => {
     res.json(findALL())
     res.status()
   } else {
-    return res.status(401).json({ message: 'Not logged in' })
+    return res.status(403).json({ message: 'Not logged in' })
   }
 })
 
@@ -86,7 +86,7 @@ app.post('/tasks', (req, res) => {
           id: newID(),
           titel: req.body.Titel,
           ersteller: 'Max Muster',
-          email: 'Max@Mustermail',
+          email: req.session.email,
           erstelldatum: nowJSON,
           beendet: null
         }
@@ -96,7 +96,7 @@ app.post('/tasks', (req, res) => {
       newTask
     })
   } else {
-    return res.status(401).json({ message: 'Not logged in' })
+    return res.status(403).json({ message: 'Not logged in' })
   }
 })
 
@@ -121,7 +121,7 @@ app.get('/tasks/:id', (req, res) => {
       })
     }
   } else {
-    return res.status(401).json({ message: 'Not logged in' })
+    return res.status(403).json({ message: 'Not logged in' })
   }
 })
 
@@ -141,7 +141,7 @@ app.put('/tasks/:id', (req, res) => {
       id,
       titel: req.body.Titel,
       ersteller: 'Max Muster',
-      email: 'Max@Mustermail',
+      email: req.session.email,
       erstelldatum: nowJSON,
       beendet: null
     }
@@ -157,7 +157,7 @@ app.put('/tasks/:id', (req, res) => {
 
     res.json(FINDING(id))
   } else {
-    return res.status(401).json({ message: 'Not logged in' })
+    return res.status(403).json({ message: 'Not logged in' })
   }
 })
 
@@ -182,7 +182,7 @@ app.delete('/tasks/:id', (req, res) => {
       })
     }
   } else {
-    return res.status(401).json({ message: 'Not logged in' })
+    return res.status(403).json({ message: 'Not logged in' })
   }
 })
 
