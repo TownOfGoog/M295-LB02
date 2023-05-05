@@ -11,6 +11,12 @@ const port = 3000;
 
 
 
+app.use(session({
+    secret: 'supersecret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {}
+}))
 //Tasks erstellt mit ChatGPT
 let tasks = [
     {
@@ -57,7 +63,7 @@ function findALL() {
 }
 
 app.get("/tasks", (req, res) => {
-    if(req.session.email){
+    if(req.session.email==true){
         res.json(findALL())
         res.status()
     }else{
@@ -84,7 +90,7 @@ app.post("/tasks", (req, res) => {
         addNewTask(newTask)
 
         res.sendStatus(201).json({
-            "message": 'Task added.'
+            "message": "Task added."
         });
         res.send(newTask)
     }else{
@@ -105,6 +111,7 @@ function FINDING(id) {
 }
 
 app.get("/tasks/:id", (req, res) => {
+    console.log(req.session.email)  
     if(req.session.email){
 
         let taskId = req.params.id;
@@ -145,7 +152,7 @@ app.put("/tasks/:id", (req, res) => {
         let id = req.params.id
         let NewTask = {
             "id": id,
-            "titel": "Wand Streichen",
+            "titel": req.body.title,
             "ersteller": "Max Muster",
             "email": "Max@Mustermail",
             "erstelldatum": nowJSON,
@@ -223,12 +230,6 @@ app.delete("/tasks/:id", (req, res) => {
 //Vorarbeiten
 const password = "m295"
 
-app.use(session({
-    secret: 'supersecret',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {}
-}))
 
 
 
@@ -274,8 +275,20 @@ app.delete('/logout', function (req, res) {
 		req.session.email = null
 		return res.status(204).json({"message": "Erfolgreich ausgelogt"})
 	}
-
   return res.status(401).json({ "message": "Not logged in" })
 })
 
 
+
+
+
+
+
+
+
+//Zusätzliche Anforderungen
+
+
+app.get("/", (req, res) => {
+    res.status(406).json({"message":"Hier gibt es nichts"})
+})
