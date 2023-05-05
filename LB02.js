@@ -8,7 +8,14 @@ import session from "express-session"
 const app = express();
 app.use(express.json())
 const port = 3000;
+let theID = "3"
+let temp;
 
+function newID(){
+    temp=parseInt(theID)
+    temp=temp+1
+    theID=toString(temp)
+}
 
 
 app.use(session({
@@ -46,9 +53,7 @@ let tasks = [
 ]
 
 //Quelle: Eigene Dokumente des modules 295
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
+
 
 
 
@@ -82,17 +87,22 @@ export function addNewTask(task) {
 app.post("/tasks", (req, res) => {
     if(req.session.email){
 
-        var now = new Date();
-        var nowJSON = now.toJSON();
+        let now = new Date();
+        let nowJSON = now.toJSON();
 
-        let newTask = req.body
+        let newTask = 
+        {"id": newID(),
+        "titel": req.body.title,
+        "ersteller": "Max Muster",
+        "email": "Max@Mustermail",
+        "erstelldatum": nowJSON,
+        "beendet": null
+                }
+        //addNewTask(newTask)
 
-        addNewTask(newTask)
-
-        res.sendStatus(201).json({
-            "message": "Task added."
+        res.status(201).json({
+            newTask
         });
-        res.send(newTask)
     }else{
         return res.status(401).json({ "message": "Not logged in" })
     }
@@ -145,8 +155,8 @@ function changeTask(task) {
 app.put("/tasks/:id", (req, res) => {
     if(req.session.email){
 
-        var now = new Date();
-        var nowJSON = now.toJSON();
+        let now = new Date();
+        let nowJSON = now.toJSON();
 
 
         let id = req.params.id
@@ -292,3 +302,7 @@ app.delete('/logout', function (req, res) {
 app.get("/", (req, res) => {
     res.status(406).json({"message":"Hier gibt es nichts"})
 })
+
+app.listen(port, () => {
+    console.log('Server is running on port 3000');
+});
